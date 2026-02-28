@@ -26,10 +26,10 @@ test('express module loads', () => {
   assert.ok(express, 'express should be importable');
 });
 
-test('express has app.del() deprecated method', () => {
+test('express has app.delete() deprecated method', () => {
   const express = require('express');
   const app = express();
-  assert.strictEqual(typeof app.del, 'function', 'app.del should exist in Express 4');
+  assert.strictEqual(typeof app.delete, 'function', 'app.delete should exist in Express 4');
 });
 
 test('express version is 4.x', () => {
@@ -49,7 +49,7 @@ test('express app can create router', () => {
 test('express wildcard route registers without error', () => {
   const express = require('express');
   const app = express();
-  app.get('*', (req, res) => res.send('ok'));
+  app.get('/{*path}', (req, res) => res.send('ok'));
   assert.ok(true, 'Wildcard route registered');
 });
 
@@ -257,7 +257,7 @@ test('app.js exports app, server, and io', () => {
 
 test('app has del method - Express 4 deprecated', () => {
   const { app, server, io } = require('../src/app');
-  assert.strictEqual(typeof app.del, 'function', 'app.del should exist in Express 4');
+  assert.strictEqual(typeof app.delete, 'function', 'app.delete should exist in Express 4');
   io.close();
   server.close();
 });

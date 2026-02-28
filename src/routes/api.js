@@ -75,9 +75,9 @@ router.put('/messages/:id', (req, res) => {
   res.json({ success: true, data: messages[idx] });
 });
 
-// Delete message — using app.del() is deprecated in Express 5
-// router.del is not a thing on Router, but app.del() is deprecated on app
-// We'll use router.delete here and show app.del() in app.js
+// Delete message — using app.delete() is deprecated in Express 5
+// router.del is not a thing on Router, but app.delete() is deprecated on app
+// We'll use router.delete here and show app.delete() in app.js
 router.delete('/messages/:id', (req, res) => {
   const idx = messages.findIndex(m => m.id === req.params.id);
   if (idx === -1) {
@@ -160,9 +160,9 @@ router.get('/stats', (req, res) => {
   });
 });
 
-// Express 4 wildcard pattern: app.get('*', handler)
+// Express 4 wildcard pattern: app.get('/{*path}', handler)
 // In Express 5, wildcard '*' must become '/{*path}' (path-to-regexp v8)
-router.get('*', (req, res) => {
+router.get('/{*path}', (req, res) => {
   res.status(404).json({
     success: false,
     error: `API endpoint not found: ${req.method} ${req.originalUrl}`

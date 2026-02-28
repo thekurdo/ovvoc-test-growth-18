@@ -37,15 +37,15 @@ app.get('/health', (req, res) => {
 // API routes
 app.use('/api', apiRoutes);
 
-// Express 4: app.del() is deprecated alias for app.delete()
+// Express 4: app.delete() is deprecated alias for app.delete()
 // This is removed in Express 5
-app.del('/legacy/cleanup', (req, res) => {
+app.delete('/legacy/cleanup', (req, res) => {
   res.json({ success: true, message: 'Legacy cleanup endpoint' });
 });
 
 // Express 4 wildcard catch-all
 // In Express 5, '*' must become '/{*path}'
-app.get('*', (req, res) => {
+app.get('/{*path}', (req, res) => {
   res.status(404).json({
     error: 'Not found',
     path: req.path
